@@ -22,13 +22,21 @@ public class Date implements Comparable <Date> {
 		year = cal.get(Calendar.YEAR);
 	}
 	
-	public boolean isValid() {
+	private boolean yearValid() {
 		if(year<Constant.MIN_YEAR) { //checks if year outside bounds
 			return false;
 		}
+		return true;
+	}
+	
+	private boolean monthValid() {
 		if(month<Constant.MIN_MONTH || month>Constant.MAX_MONTH) { //checks if month outside bounds
 			return false;
 		}
+		return true;
+	}
+	
+	private boolean dayValid() {
 		if(month==Constant.FEB) { //check if month is february
 			if(isLeap()) { //if leap, check if day outside 1-29
 				if(day<Constant.MIN_DAY || day>Constant.LEAP_DAY) {
@@ -54,6 +62,13 @@ public class Date implements Comparable <Date> {
 			}
 		}
 		return true;
+	}
+	
+	public boolean isValid() {
+		if(yearValid() && monthValid() && dayValid()) {
+			return true;
+		}
+		return false;
 	}
 	
 	private boolean isLeap() {
@@ -91,7 +106,7 @@ public class Date implements Comparable <Date> {
 	}
 	
 	public static void main(String[] args) {
-		Date date1 = new Date("0002/028/089900");
+		Date date1 = new Date("02/01/0001");
 		Date date2 = new Date("02/01/0001");
 		System.out.println(date1.day + " " + date1.month + " " +date1.year);
 		System.out.println(date1.compareTo(date2));
