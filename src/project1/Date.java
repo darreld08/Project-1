@@ -37,7 +37,7 @@ public class Date implements Comparable <Date> {
 	}
 	
 	private boolean dayValid() {
-		if(month==Constant.FEB) { //check if month is february
+		if(month == Constant.FEB) { //check if month is february
 			if(isLeap()) { //if leap, check if day outside 1-29
 				if(day < Constant.MIN_DAY || day > Constant.LEAP_DAY) {
 					return false;
