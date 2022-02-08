@@ -25,7 +25,7 @@ public class Constant {
 	public static final int LEAP_DAY = 29;
 	public static final int MAX_MONTH = 12;
 	public static final int MIN_HOUR = 0;
-	public static final int MAX_HOUR = 24;
+	public static final int MAX_HOUR = 23;
 	public static final int MIN_MINUTE = 0;
-	public static final int MAX_MINUTE = 60;
+	public static final int MAX_MINUTE = 59;
 }
