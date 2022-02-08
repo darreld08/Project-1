@@ -18,7 +18,7 @@ public class Date implements Comparable <Date> {
 	public Date() {
 		Calendar cal = Calendar.getInstance();
 		day = cal.get(Calendar.DAY_OF_MONTH);
-		month = cal.get(Calendar.MONTH);
+		month = cal.get(Calendar.MONTH) + 1; //Since Calendar.JAN = 0;
 		year = cal.get(Calendar.YEAR);
 	}
 	
@@ -105,9 +105,11 @@ public class Date implements Comparable <Date> {
 	public static void main(String[] args) {
 		Date date1 = new Date("02/01/0001");
 		Date date2 = new Date("02/01/0001");
+		Date date3 = new Date();
 		System.out.println(date1.day + " " + date1.month + " " +date1.year);
 		System.out.println(date1.compareTo(date2));
 		System.out.println(date1.isValid());
 		System.out.println(date1.toString());
+		System.out.println(date3.toString());
 	}
 }
