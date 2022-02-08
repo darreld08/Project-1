@@ -14,4 +14,14 @@ public enum Location {
 		this.zipCode = zipCode;
 		this.cityName = cityName;
 	}
+	
+	@Override
+	public String toString() {
+		return cityName + " " + zipCode + ", " + this.name();
+	}
+	
+	public static void main(String[] args) {
+		Location location1 = Location.SOMERSET;
+		System.out.println(location1.toString());
+	}
 }
