@@ -97,6 +97,10 @@ public class Date implements Comparable <Date> {
 		return 0;
 	}
 	
+	public String toString() {
+		return month + "/" + day + "/" + year;
+	}
+	
 	//Testbed main (in progress)
 	public static void main(String[] args) {
 		Date date1 = new Date("02/01/0001");
@@ -104,5 +108,6 @@ public class Date implements Comparable <Date> {
 		System.out.println(date1.day + " " + date1.month + " " +date1.year);
 		System.out.println(date1.compareTo(date2));
 		System.out.println(date1.isValid());
+		System.out.println(date1.toString());
 	}
 }
