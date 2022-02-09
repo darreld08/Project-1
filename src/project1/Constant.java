@@ -33,8 +33,12 @@ public class Constant {
 	public static final int LESS = -1; // Used in the compareTo() methods
 	public static final int NUMBER_BASE = 10; //Used in the minuteChecker method in the Time class
 	public static final int DOB_INDEX = 0;
-	public static final int NAME_INDEX = 1;
-	public static final int APPT_DATE_INDEX = 2;
-	public static final int APPT_TIME_INDEX = 3;
-	public static final int COUNTY_INDEX = 4;
+	public static final int FNAME_INDEX = 1;
+	public static final int LNAME_INDEX = 2;
+	public static final int APPT_DATE_INDEX = 3;
+	public static final int APPT_TIME_INDEX = 4;
+	public static final int COUNTY_INDEX = 5;
+	public static final int NOT_FOUND = -1; //Used in Schedule class when appointment not found in appointment array
+	public static final int DEFAULT_SCHEDULE_LENGTH = 4;
+	public static final int SCHEDULE_GROW_AMT = 4;
 }

@@ -7,17 +7,38 @@ public class Appointment {
 	
 	public Appointment(String input) {
 		String[] splitInput = input.split(" ");
-		patient = new Patient(splitInput[Constant.NAME_INDEX], splitInput[Constant.DOB_INDEX]);
+		String patientName = splitInput[Constant.FNAME_INDEX] + " " + splitInput[Constant.LNAME_INDEX];
+		patient = new Patient(patientName, splitInput[Constant.DOB_INDEX]);
 		slot = new Timeslot(splitInput[Constant.APPT_DATE_INDEX], splitInput[Constant.APPT_TIME_INDEX]);
-		location = Location
+		location = Location.getEnumFromString(splitInput[Constant.COUNTY_INDEX]);
 	}
+	
 	@Override
 	public boolean equals(Object obj) {
-		
+		if(obj instanceof Appointment) {
+			Appointment other = (Appointment) obj;
+			if(this.patient.compareTo(other.patient) == Constant.EQUAL) {
+				if(this.slot.compareTo(other.slot) == Constant.EQUAL) {
+					if(this.location.name().equals(other.location.name())) {
+						return true;
+					}
+				}
+			}
+		}
+		return false;
 	}
 	
 	@Override
 	public String toString() {
+		return patient.toString() + ", Appointment Detail: " + slot.toString() + ", " + location.toString();
+	}
+	
+	public static void main (String[] args) {
+		Appointment appt1 = new Appointment("1/19/2000 Jane Doe 12/1/2022 9:45 union");
+		Appointment appt2 = new Appointment("11/31/1999 John Doe 3/31/2022 9:45 SOMERSET");
+		Appointment appt3 = new Appointment("1/19/2000 Jane Doe 12/1/2022 9:45 UNION");
+		System.out.println(appt1.equals(appt2));
+		System.out.println(appt1.toString());
 		
 	}
 }

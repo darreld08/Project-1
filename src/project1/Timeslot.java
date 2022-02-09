@@ -20,7 +20,7 @@ public class Timeslot implements Comparable<Timeslot> {
 
     @Override
     public String toString() {
-        return date.toString() + " " + time.toString();
+        return date.toString() + ", " + time.toString();
     }
 
     @Override

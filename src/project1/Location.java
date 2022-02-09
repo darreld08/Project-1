@@ -21,7 +21,12 @@ public enum Location {
 	}
 	
 	public static Location getEnumFromString(String location) {
-		return Location.valueOf(location.toUpperCase());
+		for(Location loc: Location.values()) {
+			if(loc.name().equals(location.toUpperCase())) {
+				return loc;
+			}
+		}
+		return null;
 	}
 	
 	public static void main(String[] args) {
