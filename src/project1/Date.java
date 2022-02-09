@@ -89,12 +89,12 @@ public class Date implements Comparable <Date> {
 		int a = Integer.parseInt(Integer.toString(this.year) + Integer.toString(this.month) + Integer.toString(this.day));
 		int b = Integer.parseInt(Integer.toString(date.year) + Integer.toString(date.month) + Integer.toString(date.day));
 		if(a > b) {
-			return 1;
+			return Constant.GREATER;
 		}
 		if(a < b) {
-			return -1;
+			return Constant.LESS;
 		}
-		return 0;
+		return Constant.EQUAL;
 	}
 	
 	public String toString() {

@@ -20,6 +20,10 @@ public enum Location {
 		return cityName + " " + zipCode + ", " + this.name();
 	}
 	
+	public static Location getEnumFromString(String location) {
+		return Location.valueOf(location.toUpperCase());
+	}
+	
 	public static void main(String[] args) {
 		Location location1 = Location.SOMERSET;
 		System.out.println(location1.toString());
