@@ -28,4 +28,8 @@ public class Constant {
 	public static final int MAX_HOUR = 23;
 	public static final int MIN_MINUTE = 0;
 	public static final int MAX_MINUTE = 59;
+	public static final int GREATER = 1; // Used in the compareTo() methods
+	public static final int EQUAL = 0; // Used in the compareTo() methods
+	public static final int LESS = -1; // Used in the compareTo() methods
+	public static final int NUMBER_BASE = 10; //Used in the minuteChecker method in the Time class
 }
