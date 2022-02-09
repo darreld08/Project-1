@@ -86,15 +86,29 @@ public class Date implements Comparable <Date> {
 	
 	@Override
 	public int compareTo(Date date) {
-		int a = Integer.parseInt(Integer.toString(this.year) + Integer.toString(this.month) + Integer.toString(this.day));
-		int b = Integer.parseInt(Integer.toString(date.year) + Integer.toString(date.month) + Integer.toString(date.day));
-		if(a > b) {
+		if (this.year > date.year) {
 			return Constant.GREATER;
 		}
-		if(a < b) {
-			return Constant.LESS;
-		}
-		return Constant.EQUAL;
+        else if (this.year < date.year) {
+        	return Constant.LESS;
+        }
+        else {
+            if (this.month > date.month) {
+            	return Constant.GREATER;
+            }
+            else if (this.month < date.month) {
+            	return Constant.LESS;
+            }
+            else {
+            	if (this.day > date.day) {
+            		return Constant.GREATER;
+            	}
+            	else if (this.day < date.day) {
+            		return Constant.LESS;
+            	}
+            	return Constant.EQUAL;
+            }
+        }
 	}
 	
 	public String toString() {
@@ -103,8 +117,8 @@ public class Date implements Comparable <Date> {
 	
 	//Testbed main (in progress)
 	public static void main(String[] args) {
-		Date date1 = new Date("02/01/0001");
-		Date date2 = new Date("02/01/0001");
+		Date date1 = new Date("01/11/2021");
+		Date date2 = new Date("01/11/2021");
 		Date date3 = new Date();
 		System.out.println(date1.day + " " + date1.month + " " +date1.year);
 		System.out.println(date1.compareTo(date2));
