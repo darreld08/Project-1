@@ -33,19 +33,26 @@ public class Time implements Comparable<Time> {
         return false;
     }
 
+    private String  minuteChecker(int minute) {
+        if (minute == Constant.MIN_MINUTE) return "00";
+        if (minute < Constant.NUMBER_BASE) return "0" + minute;
+
+        return Integer.toString(minute);
+    }
+
     @Override
     public String toString() {
-        return hour + ":" + minute;
+        return hour + ":" + minuteChecker(minute);
     }
 
     @Override
     public int compareTo(Time time) {
-        if (this.hour > time.hour) return 1;
-        else if (this.hour < time.hour) return -1;
+        if (this.hour > time.hour) return Constant.GREATER;
+        else if (this.hour < time.hour) return Constant.LESS;
         else {
-            if (this.minute > time.minute) return 1;
-            else if (this.minute < time.minute) return -1;
-            else return 0;
+            if (this.minute > time.minute) return Constant.GREATER;
+            else if (this.minute < time.minute) return Constant.LESS;
+            else return Constant.EQUAL;
         }
     }
 
@@ -55,8 +62,9 @@ public class Time implements Comparable<Time> {
         Time time3 = new Time("24:45");
         Time time4 = new Time("00:25");
         Time time5 = new Time("23:59");
-        Time time6 = new Time("009:15");
+        Time time6 = new Time("9:15");
         Time time7 = new Time();
+        Time time8 = new Time("9:05");
         System.out.println("Time 1: The hour is " + time1.hour + " and the minute is " + time1.minute);
         System.out.println("Time 2: The hour is " + time2.hour + " and the minute is " + time2.minute);
         System.out.println("Time 3: The hour is " + time3.hour + " and the minute is " + time3.minute);
@@ -75,5 +83,7 @@ public class Time implements Comparable<Time> {
         System.out.println(time1.compareTo(time5));
         System.out.println(time7.compareTo(time1));
         System.out.println(time5.toString());
+        System.out.println(time6.toString());
+        System.out.println(time8.toString());
     }
 }
