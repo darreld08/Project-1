@@ -24,15 +24,6 @@ public enum Location {
 		return cityName + " " + zipCode + ", " + this.name();
 	}
 	
-	public static Location getEnumFromString(String location) {
-		for(Location loc: Location.values()) {
-			if(loc.name().equals(location.toUpperCase())) {
-				return loc;
-			}
-		}
-		return null;
-	}
-	
 	public static void main(String[] args) {
 		Location location1 = Location.SOMERSET;
 		System.out.println(location1.toString());
