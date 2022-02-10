@@ -14,6 +14,10 @@ public enum Location {
 		this.zipCode = zipCode;
 		this.cityName = cityName;
 	}
+
+	public String getZipCode() {
+		return zipCode;
+	}
 	
 	@Override
 	public String toString() {

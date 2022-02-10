@@ -32,4 +32,6 @@ public class Constant {
 	public static final int EQUAL = 0; // Used in the compareTo() methods
 	public static final int LESS = -1; // Used in the compareTo() methods
 	public static final int NUMBER_BASE = 10; //Used in the minuteChecker method in the Time class
+	public static final int SORT_BY_ZIPCODE = 1;
+	public static final int SORT_BY_PATIENT = 2;
 }

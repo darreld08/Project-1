@@ -45,6 +45,36 @@ public class Schedule {
 		}
 		return false; 
 	}
+
+	private void swap(int i, int j) {
+		Appointment temp = appointments[i];
+		appointments[i] = appointments[j];
+		appointments[j] = temp;
+	}
+
+	private void sort(int sortingMethod) {
+		int n = numAppts;
+		for (int i = 1; i < n; i++) {
+			for (int j = i; j > 0; j--) {
+				if (sortingMethod == Constant.SORT_BY_ZIPCODE) {
+					int zipcode1 = Integer.parseInt(appointments[j - 1].getLocation().getZipCode());
+					int zipcode2 = Integer.parseInt(appointments[j].getLocation().getZipCode());
+					if (zipcode1 > zipcode2) swap(j - 1, j);
+					else if (zipcode1 == zipcode2) {
+						Timeslot slot1 = appointments[j - 1].getSlot();
+						Timeslot slot2 = appointments[j].getSlot();
+						if (slot1.compareTo(slot2) == Constant.GREATER) swap(j - 1, j);
+						else break;
+					} else break;
+				} else {
+					Patient patient1 = appointments[j - 1].getPatient();
+					Patient patient2 = appointments[j].getPatient();
+					if (patient1.compareTo(patient2) == Constant.GREATER) swap(j - 1, j);
+					else break;
+				}
+			}
+		}
+	}
 	
 	public void print() { //print all appointments in current order
 		for (int i = 0; i < numAppts; i++) {
@@ -53,11 +83,17 @@ public class Schedule {
 	}
 	
 	public void printByZip() { //
-		
+		sort(Constant.SORT_BY_ZIPCODE);
+		for (int i = 0; i < numAppts; i++) {
+			System.out.println(appointments[i].toString());
+		}
 	}
 	
 	public void printByPatient() {
-		
+		sort(Constant.SORT_BY_PATIENT);
+		for (int i = 0; i < numAppts; i++) {
+			System.out.println(appointments[i].toString());
+		}
 	}
 		
 		
