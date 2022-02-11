@@ -6,11 +6,20 @@ public class Appointment {
 	private Location location;
 	
 	public Appointment(String input) {
-		String[] splitInput = input.split(" ");
-		String patientName = splitInput[Constant.FNAME_INDEX] + " " + splitInput[Constant.LNAME_INDEX];
-		patient = new Patient(patientName, splitInput[Constant.DOB_INDEX]);
-		slot = new Timeslot(splitInput[Constant.APPT_DATE_INDEX], splitInput[Constant.APPT_TIME_INDEX]);
-		location = Location.getEnumFromString(splitInput[Constant.COUNTY_INDEX]);
+		try {
+			String[] splitInput = input.split(" ");
+			String patientName = splitInput[Constant.FNAME_INDEX] + " " + splitInput[Constant.LNAME_INDEX];
+			patient = new Patient(patientName, splitInput[Constant.DOB_INDEX]);
+			slot = new Timeslot(splitInput[Constant.APPT_DATE_INDEX], splitInput[Constant.APPT_TIME_INDEX]);
+			location = Location.getEnumFromString(splitInput[Constant.COUNTY_INDEX]);
+		}
+		catch (Exception e) {
+			String[] splitInput = input.split(" ");
+			String patientName = splitInput[Constant.FNAME_INDEX] + " " + splitInput[Constant.LNAME_INDEX];
+			patient = new Patient(patientName, splitInput[Constant.DOB_INDEX]);
+			slot = new Timeslot("12/31/2022", "16:45"); //choose placeholder timeslot when not included in command, ex. for CP
+			location = Location.SOMERSET; //choose placeholder location when not included in command
+		}
 	}
 
 	public Location getLocation() {

@@ -43,6 +43,9 @@ public class Constant {
 	public static final int APPT_DATE_INDEX = 3;
 	public static final int APPT_TIME_INDEX = 4;
 	public static final int COUNTY_INDEX = 5;
+	public static final int TIMESLOT_INCREMENT = 15;
+	public static final int TIMESLOT_MIN_HOUR = 9;
+	public static final int TIMESLOT_MAX_HOUR = 16;
 	
 	
 }

@@ -1,123 +1,132 @@
 package project1;
+
 import java.util.Scanner;
 
 public class Kiosk {
 	private Schedule sch = new Schedule();
+	private Scanner scan = new Scanner(System.in);
+	private String detail;
+	private String command;
+	private Appointment appt;
+	private Date dob;
+	private Date apptDate;
+	private Time apptTime;
+	private Date today;
 	
 	public Kiosk() {
 		
 	}
 	
-	private boolean isValidInput(String input) {
-		//checks if date not valid calendar date
-		Appointment appt = new Appointment(input);
-		Date dob = appt.getPatient().getDOB();
-		Date apptDate = appt.getSlot().getDate();
-		Time apptTime = appt.getSlot().getTime();
-		Date today = new Date();
-		String error = "";
-		if(!dob.isValid()) {
-			error+="Invalid date of birth!";
+	private void initializeTempAppt(String input) {
+		appt = new Appointment(input);
+		dob = appt.getPatient().getDOB();
+		apptDate = appt.getSlot().getDate();
+		apptTime = appt.getSlot().getTime();
+		today = new Date();
+	}
+	
+	private boolean isValidInput() {
+		if(!dob.isValid()) { //checks if dob not valid calendar date
+			System.out.println("Invalid date of birth!");
 		}
-		else if(!apptDate.isValid()) {
-			error+="Invalid appointment date!";
+		else if(!apptDate.isValid() || apptDate.getYear() > today.getYear()) { //checks if appt date valid or after this year
+			System.out.println("Invalid appointment date!");
 		}
-		//checks if dob today or future
-		if(dob.compareTo(today) >= 0) {
-			error+="Date of birth invalid --> it is a future date";
+		else if(dob.compareTo(today) >= 0) { //checks if dob today or future
+			System.out.println("Date of birth invalid --> it is a future date");
 		}
-		//checks if appointment date today, day before today, or after this year
-		if(apptDate.compareTo(today) <= 0 || apptDate.getYear() > today.getYear()) {
-			error+="Appointment date invalid --> must be a future date";
+		else if(apptDate.compareTo(today) <= 0) { //checks if appointment date today or day before today
+			System.out.println("Appointment date invalid --> must be a future date");
 		}
-		//checks if appointment time not at a 15 min interval or outside daily appointment range
-		if(apptTime.getMinute() % 15 != 0 || apptTime.getHour() < 9 || apptTime.getHour() > 16) {
-			error+="Invalid Appointment Time! Must enter a time between 9:00 and 16:45 with a 15-minute interval";
+		else if(apptTime.getMinute() % Constant.TIMESLOT_INCREMENT != 0 || apptTime.getHour() < Constant.TIMESLOT_MIN_HOUR || apptTime.getHour() > Constant.TIMESLOT_MAX_HOUR) { //checks if appointment time not at a 15 min interval or outside daily appointment range
+			System.out.println("Invalid appointment Time! Must enter a time between 9:00 and 16:45 with a 15-minute interval");
 		}
-		//checks if county name not valid
-		if(appt.getLocation()==null) {
-			error+="Invalid Location!";
+		else if(appt.getLocation()==null) { //checks if county name not valid
+			System.out.println("Invalid location!");
 		}
-		//checks if appointment with same patient, timeslot, and location already in schedule
-		if(sch.existsInSchedule(appt)) {
-			error+="Same appointment exists in schedule.";
+		else if(sch.existsInSchedule(appt)) { //checks if appointment with same patient, timeslot, and location already in schedule
+			System.out.println("Same appointment exists in schedule.");
 		}
-		//checks if timeslot already taken
-		if(sch.timeSlotTaken(appt)) {
-			error+="Time slot has been taken at this location.";
+		else if(sch.timeSlotTaken(appt)) { //checks if timeslot already taken
+			System.out.println("Time slot has been taken at this location.");
 		}
-		//checks if same patient name and date same, but different location with existing appointment
-		if(sch.doubleAppt(appt)) {
-			error+="Same patient cannot book an appointment with the same date.";
+		else if(sch.doubleAppt(appt)) { //checks if same patient name and date same, but different location with existing appointment
+			System.out.println("Same patient cannot book an appointment with the same date.");
 		}
-		if(error.equals("")) {
-			return true;
+		else return true;
+		return false;
+	}
+	
+	private String[] copyPartialArray(String[] arr, int startIndex) {
+		String[] copiedArray = new String[arr.length - startIndex];
+		for(int i = startIndex; i < arr.length; i++) {
+			copiedArray[i-startIndex] = arr[i];
+		}
+		return copiedArray;
+	}
+	
+	private void formatInput() {
+		String thisLine;
+		String[] splitThisLine;
+		thisLine = scan.nextLine();
+		splitThisLine = thisLine.split(" ");
+		command = splitThisLine[0];
+		detail = String.join(" ",copyPartialArray(splitThisLine, 1));
+	}
+	
+	private void C() {
+		if(sch.remove(appt)) {
+			System.out.println("Appointment cancelled");
 		}
 		else {
-			System.out.println(error);
-			return false;
+			System.out.println("Not cancelled, appointment does not exist.");
 		}
 	}
 	
-	private void continuousInput() {
-		Scanner scan = new Scanner(System.in);
-		String thisLine;
-		String command;
-		String detail;
-		String output = "";
-		
+	private void CP() {
+		sch.removePatient(appt); //command == CP
+		System.out.println("All appointments for " + appt.getPatient().toString() + " have been cancelled.");
+	}
+	
+	private void B() {
+		sch.add(appt);
+		System.out.println("Appointment booked and added to the schedule.");
+	}
+	
+	public void run() {
+		System.out.println("Kiosk running. Ready to process transactions");
+		boolean firstLine = true;
 		while(scan.hasNextLine()) {
-			thisLine = scan.nextLine();
-			command = thisLine.substring(0,1);
-			detail = thisLine.substring(2);
-			if(command.equals("Q")) {
-				break;
-			}
-			if(command.equals("P")) {
+			if(firstLine) System.out.println();
+			firstLine = false;
+			formatInput();
+			if(command.equals("Q")) break;
+			else if(command.equals("P")) {
 				sch.print();
 			}
-			
-			if(command.equals("PZ")) {
-				sch.printByZip();;
+			else if(command.equals("PZ")) {
+				sch.printByZip();
 			}
-			
-			if(command.equals("PP")) {
+			else if(command.equals("PP")) {
 				sch.printByPatient();
 			}
-			if(command.equals("B") || command.equals("C") || command.equals("CP" )) {
-				Appointment appt = new Appointment(detail);
-				if(isValidInput(detail)) {
-					
+			else if(command.equals("B") || command.equals("C") || command.equals("CP" )) {
+				initializeTempAppt(detail);
+				if(command.equals("C")) {
+					C();
+				}
+				else if(command.equals("CP")) {
+					CP();
+				}
+				else if(isValidInput()) {
 					if(command.equals("B")) {
-						sch.add(appt);
-						System.out.println("Appointment booked and added to the schedule.");
-					}
-					
-					if(command.equals("C")) {
-						if(sch.remove(appt)) {
-							System.out.println("Appointment cancelled");
-						}
-						else {
-							System.out.println("Not cancelled, appointment does not exist.");
-						}
-					}
-					
-					if(command.equals("CP")) {
-						sch.removePatient(appt);
+						B();
 					}
 				}
 			}
+			else System.out.println("Invalid command!");
 		}
 		scan.close();
-	}
-	public void run() {
-		System.out.println("Kiosk running. Ready to process transactions");
-		continuousInput();
-		System.out.println("Kiosk Session Ended.");
-	}
-	
-	public static void main(String[] args) {
-		Kiosk kiosk = new Kiosk();
-		kiosk.run();
+		System.out.println("Kiosk session ended.");
 	}
 }

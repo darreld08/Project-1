@@ -15,7 +15,7 @@ public class Timeslot implements Comparable<Timeslot> {
     }
     
     public boolean equals(Timeslot slot) {
-    	if(date == slot.date && time == slot.time) {
+    	if(date.compareTo(slot.date) == Constant.EQUAL && time.compareTo(slot.time) == Constant.EQUAL) {
     		return true;
     	}
     	return false;

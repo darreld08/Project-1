@@ -68,7 +68,7 @@ public class Schedule {
 				appointments[i] = appointments[i + 1]; //shift all elements left by 1
 			}
 			numAppts -= 1;
-			appointments[numAppts - 1] = null; //deletes repeated element in last slot
+			appointments[numAppts] = null; //deletes repeated element in last slot
 			//Changed from numAppts to numAppts - 1 since the last appointment is at index numAppts because the array starts at index 0
 			return true;
 		}
@@ -120,23 +120,29 @@ public class Schedule {
 	}
 	
 	public void print() { //print all appointments in current order
+		System.out.println("\n*list of appointments in schedule*");
 		for (int i = 0; i < numAppts; i++) {
 			System.out.println(appointments[i].toString());
 		}
+		System.out.println("*end of schedule*\n");
 	}
 	
 	public void printByZip() { //
+		System.out.println("\n*list of appointments by zip and timeslot*");
 		sort(Constant.SORT_BY_ZIPCODE);
 		for (int i = 0; i < numAppts; i++) {
 			System.out.println(appointments[i].toString());
 		}
+		System.out.println("*end of schedule*\n");
 	}
 	
 	public void printByPatient() {
+		System.out.println("\n*list of appointments by patient*");
 		sort(Constant.SORT_BY_PATIENT);
 		for (int i = 0; i < numAppts; i++) {
 			System.out.println(appointments[i].toString());
 		}
+		System.out.println("*end of schedule*\n");
 	}
 		
 		
