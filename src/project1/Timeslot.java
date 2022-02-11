@@ -13,10 +13,25 @@ public class Timeslot implements Comparable<Timeslot> {
         this.date = new Date();
         this.time = new Time();
     }
-
+    
+    public boolean equals(Timeslot slot) {
+    	if(date == slot.date && time == slot.time) {
+    		return true;
+    	}
+    	return false;
+    }
+    public Date getDate() {
+    	return date;
+    }
+    
+    public Time getTime() {
+    	return time;
+    }
+    
     public boolean isValid() {
         return date.isValid() && time.isValid();
     }
+    
 
     @Override
     public String toString() {

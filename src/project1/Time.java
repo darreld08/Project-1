@@ -17,7 +17,15 @@ public class Time implements Comparable<Time> {
         this.hour = cal.get(Calendar.HOUR_OF_DAY);
         this.minute = cal.get(Calendar.MINUTE);
     }
-
+    
+    public int getHour() {
+    	return hour;
+    }
+    
+    public int getMinute() {
+    	return minute;
+    }
+    
     private boolean isHourValid() {
         if (this.hour > Constant.MAX_HOUR || this.hour < Constant.MIN_HOUR) return false;
         return true;

@@ -22,6 +22,9 @@ public class Date implements Comparable <Date> {
 		year = cal.get(Calendar.YEAR);
 	}
 	
+	public int getYear() {
+		return year;
+	}
 	private boolean yearValid() {
 		if(year < Constant.MIN_YEAR) { //checks if year outside bounds
 			return false;

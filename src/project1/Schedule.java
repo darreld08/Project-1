@@ -7,6 +7,35 @@ public class Schedule {
 	public Schedule() {
 		appointments = new Appointment[Constant.DEFAULT_SCHEDULE_LENGTH];
 	}
+	
+	public boolean existsInSchedule(Appointment appt) {
+		if(find(appt)==Constant.NOT_FOUND) {
+			return false;
+		}
+		return true;
+	}
+	
+	public boolean timeSlotTaken(Appointment appt) {
+		Timeslot slot = appt.getSlot();
+		for(int i = 0; i < numAppts; i++) {
+			if(slot.equals(appointments[i].getSlot()) && appt.getLocation().equals(appointments[i].getLocation())) { //checks if timeslots are same and location are same
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public boolean doubleAppt(Appointment appt) {
+		for(int i = 0; i < numAppts; i++) {
+			if(appointments[i].getPatient().compareTo(appt.getPatient()) == 0) { //patients are equal
+				if(appointments[i].getSlot().getDate().compareTo(appt.getSlot().getDate()) == 0) { //same date
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+	
 	private int find(Appointment appt) { //returns the index, or NOT_FOUND = -1
 		for(int i = 0; i < numAppts; i++) {
 			if(appointments[i].equals(appt)) {
@@ -44,6 +73,20 @@ public class Schedule {
 			return true;
 		}
 		return false; 
+	}
+	
+	public boolean removePatient(Appointment appt) {
+		int i = 0;
+		boolean removedPatient = false;
+		while(i < numAppts) {
+			if(appointments[i].getPatient().compareTo(appt.getPatient()) == 0) { //patients are same
+				remove(appointments[i]);
+				removedPatient = true;
+				continue;
+			}
+			i++;
+		}
+		return removedPatient;
 	}
 
 	private void swap(int i, int j) {

@@ -14,6 +14,13 @@ public enum Location {
 		this.zipCode = zipCode;
 		this.cityName = cityName;
 	}
+	
+	public boolean equals(Location loc) {
+		if(this.name().equals(loc.name())) {
+			return true;
+		}
+		return false;
+	}
 
 	public String getZipCode() {
 		return zipCode;
