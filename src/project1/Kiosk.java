@@ -1,9 +1,16 @@
 package project1;
 
 import java.util.Scanner;
-
+/**
+ * This class contains a constructor that instantiates a Kiosk object consisting of a schedule that is continuously 
+ * updated or printed to the console based on user commands. This class contains a method that take in commands from
+ * the user, and helper methods that format the input, check for input errors, and book/cancel appointments.
+ *
+ * @author Darrel Dsouza
+ * @author Anton Derkach
+ */
 public class Kiosk {
-	private Schedule sch = new Schedule();
+	private Schedule sch;
 	private Scanner scan = new Scanner(System.in);
 	private String detail;
 	private String command;
@@ -13,10 +20,18 @@ public class Kiosk {
 	private Time apptTime;
 	private Date today;
 	
+	/**
+	 * Instantiates a Kiosk object by creating a new schedule object and scanner.
+	 */
 	public Kiosk() {
-		
+		sch = new Schedule();
+		scan = new Scanner (System.in);
 	}
 	
+	/**
+	 * Creates a temporary appointment object to hold user input while checking for errors.
+	 * @param input The string input by the user into the kiosk.
+	 */
 	private void initializeTempAppt(String input) {
 		appt = new Appointment(input);
 		dob = appt.getPatient().getDOB();
@@ -25,6 +40,10 @@ public class Kiosk {
 		today = new Date();
 	}
 	
+	/**
+	 * Checks if appointment information input by the user is valid, if not, prints an error message to the console.
+	 * @return True if input is valid (no errors)
+	 */
 	private boolean isValidInput() {
 		if(!dob.isValid()) { //checks if dob not valid calendar date
 			System.out.println("Invalid date of birth!");
@@ -57,6 +76,12 @@ public class Kiosk {
 		return false;
 	}
 	
+	/**
+	 * Gets part of an array, from a certain start index to the end
+	 * @param arr The array to get a part of.
+	 * @param startIndex The dividing point of the array, all values before this index are not returned.
+	 * @return A new array containing elements from the input array from the start index to the end. 
+	 */
 	private String[] copyPartialArray(String[] arr, int startIndex) {
 		String[] copiedArray = new String[arr.length - startIndex];
 		for(int i = startIndex; i < arr.length; i++) {
@@ -65,6 +90,9 @@ public class Kiosk {
 		return copiedArray;
 	}
 	
+	/**
+	 * Scans a string input from the console, and splits it into a command and a detail string.
+	 */
 	private void formatInput() {
 		String thisLine;
 		String[] splitThisLine;
@@ -74,6 +102,9 @@ public class Kiosk {
 		detail = String.join(" ",copyPartialArray(splitThisLine, 1));
 	}
 	
+	/**
+	 * Cancels the input appointment if it exists.
+	 */
 	private void C() {
 		if(sch.remove(appt)) {
 			System.out.println("Appointment cancelled");
@@ -82,17 +113,27 @@ public class Kiosk {
 			System.out.println("Not cancelled, appointment does not exist.");
 		}
 	}
-	
+	/**
+	 * Cancels all appointments by the same patient as the input patient.
+	 */
 	private void CP() {
 		sch.removePatient(appt); //command == CP
 		System.out.println("All appointments for " + appt.getPatient().toString() + " have been cancelled.");
 	}
 	
+	/**
+	 * Books an appointment that was input by the user.
+	 */
 	private void B() {
 		sch.add(appt);
 		System.out.println("Appointment booked and added to the schedule.");
 	}
 	
+	/**
+	 * Runs the kiosk by continuously looking for commands in the console and executing them. Commands include "B" to book 
+	 * an appointment, "C" to cancel an appointment, "CP" to cancel all appointments of a given patient, "P" to print the schedule, 
+	 * "PZ" to print sorted by clinic zip code, and "PP" to print sorted by patient name and DOB.
+	 */
 	public void run() {
 		System.out.println("Kiosk running. Ready to process transactions");
 		boolean firstLine = true;

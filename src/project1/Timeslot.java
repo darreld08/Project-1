@@ -77,7 +77,7 @@ public class Timeslot implements Comparable<Timeslot> {
 
     /**
      * Compares two Timeslot objects.
-     * @param time The Timeslot object to compare to.
+     * @param slot The Timeslot object to compare to.
      * @return 1 if the instance object is greater than the other object, 0 if equal, and -1 if less.
      */
     @Override
@@ -92,29 +92,75 @@ public class Timeslot implements Comparable<Timeslot> {
     }
 
     /**
-     * Tests the Timeslot class.
+     * Tests the Timeslot class. (in progress)
      * @param args Not used. Here by default.
      */
     public static void main(String[] args) {
-        Timeslot timeslot1 = new Timeslot("1/25/2022", "14:30");
-        Timeslot timeslot2 = new Timeslot("2/20/2022", "9:15");
-        Timeslot timeslot3 = new Timeslot("1/25/2022", "14:30");
-        Timeslot timeslot4 = new Timeslot("1/25/2022", "16:30");
-        Timeslot timeslot5 = new Timeslot("1/25/2022", "6:00");
-        Timeslot timeslot6 = new Timeslot("2/30/2022", "9:15");
-        Timeslot timeslot7 = new Timeslot("2/20/2022", "26:15");
-        Timeslot timeslot8 = new Timeslot();
+    	int expectedResult;
+		int result;
+		//Test case #1, timeslot 1 date is before timeslot 2
+		Timeslot timeslot1 = new Timeslot("2/27/2021", "1:45");
+		Timeslot timeslot2 = new Timeslot("3/2/2021", "9:15");
+		System.out.println("Test case #1: If timeslot 1 date is before timeslot 2, return -1");
+		result = timeslot1.compareTo(timeslot2);
+		expectedResult = -1;
+		if(result == expectedResult) {
+			System.out.println("Pass.");
+		}
+		else {
+			System.out.println("Fail.");
+		}
 
-        System.out.println(timeslot1.isValid()); //checks if a valid timeslot is valid
-        System.out.println(timeslot6.isValid()); //checks if a timeslot with an invalid date is valid
-        System.out.println(timeslot7.isValid()); //checks if a timeslot with an invalid time is valid
-
-        System.out.println(timeslot2.toString());
-        System.out.println(timeslot8.toString());
-
-        System.out.println(timeslot1.compareTo(timeslot2)); //should be less
-        System.out.println(timeslot1.compareTo(timeslot3)); //should be equal
-        System.out.println(timeslot4.compareTo(timeslot1)); //should be greater
-        System.out.println(timeslot1.compareTo(timeslot5)); //should be greater
+		//Test case #2, timeslot 1 date is after timeslot 2
+		timeslot1 = new Timeslot("3/2/2021", "1:45");
+		timeslot2 = new Timeslot("2/27/2021", "9:15");
+		System.out.println("Test case #2: If timeslot 1 date is after timeslot 2, return 1");
+		result = timeslot1.compareTo(timeslot2);
+		expectedResult = 1;
+		if(result == expectedResult) {
+			System.out.println("Pass.");
+		}
+		else {
+			System.out.println("Fail.");
+		}
+		
+		//Test case #3, timeslots have same date, and timeslot 1 time is before timeslot 2
+		timeslot1 = new Timeslot("3/2/2021", "1:45");
+		timeslot2 = new Timeslot("3/2/2021", "2:15");
+		System.out.println("Test case #3: If timeslots have same date, and timeslot 1 time is before timeslot 2, return -1");
+		result = timeslot1.compareTo(timeslot2);
+		expectedResult = -1;
+		if(result == expectedResult) {
+			System.out.println("Pass.");
+		}
+		else {
+			System.out.println("Fail.");
+		}
+		
+		//Test case #4, timeslots have same date, and timeslot 1 time is after timeslot 2
+		timeslot1 = new Timeslot("3/2/2021", "2:15");
+		timeslot2 = new Timeslot("3/2/2021", "1:45");
+		System.out.println("Test case #4: If timeslots have same date, and timeslot 1 time is after timeslot 2, return 1");
+		result = timeslot1.compareTo(timeslot2);
+		expectedResult = 1;
+		if(result == expectedResult) {
+			System.out.println("Pass.");
+		}
+		else {
+			System.out.println("Fail.");
+		}
+		
+		//Test case #5, timeslot 1 and 2 have same date and time
+		timeslot1 = new Timeslot("3/2/2021", "2:15");
+		timeslot2 = new Timeslot("3/2/2021", "2:15");
+		System.out.println("Test case #5: If timeslot 1 and 2 have the same date and time, return 0");
+		result = timeslot1.compareTo(timeslot2);
+		expectedResult = 0;
+		if(result == expectedResult) {
+			System.out.println("Pass.");
+		}
+		else {
+			System.out.println("Fail.");
+		}
     }
 }

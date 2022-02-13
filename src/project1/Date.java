@@ -163,6 +163,7 @@ public class Date implements Comparable <Date> {
 	 * Converts the date into a String consisting of the year, month, and day
 	 * @return The String representation of the instance object
 	 */
+	@Override
 	public String toString() {
 		return month + "/" + day + "/" + year;
 	}
@@ -173,13 +174,140 @@ public class Date implements Comparable <Date> {
 	 */
 	//Testbed main (in progress)
 	public static void main(String[] args) {
-		Date date1 = new Date("01/11/2021");
-		Date date2 = new Date("01/11/2021");
-		Date date3 = new Date();
-		System.out.println(date1.day + " " + date1.month + " " +date1.year);
-		System.out.println(date1.compareTo(date2));
-		System.out.println(date1.isValid());
-		System.out.println(date1.toString());
-		System.out.println(date3.toString());
+		boolean expectedResult;
+		boolean result;
+		//Test case #1, date with invalid day of the month
+		Date date1 = new Date("11/31/2021");
+		System.out.println("Test case #1: Apr, Jun, Sept, and Nov only have 30 days.");
+		result = date1.isValid();
+		expectedResult = false;
+		if(result == expectedResult) {
+			System.out.println("Pass.");
+		}
+		else {
+			System.out.println("Fail.");
+		}
+		//Test case #2, date with invalid day of the month
+		Date date2 = new Date("11/00/2021");
+		System.out.println("Test case #2: Minimum day value is 1");
+		result = date2.isValid();
+		expectedResult = false;
+		if(result == expectedResult) {
+			System.out.println("Pass.");
+		}
+		else {
+			System.out.println("Fail.");
+		}
+		
+		//Test case #3, date with invalid month
+		Date date3 = new Date("13/11/2021");
+		System.out.println("Test case #3: Maximum month value is 12");
+		result = date3.isValid();
+		expectedResult = false;
+		if(result == expectedResult) {
+			System.out.println("Pass.");
+		}
+		else {
+			System.out.println("Fail.");
+		}
+		//Test case #4, date with invalid month
+		Date date4 = new Date("00/11/2021");
+		System.out.println("Test case #4: Minimum month value is 1");
+		result = date4.isValid();
+		expectedResult = false;
+		if(result == expectedResult) {
+			System.out.println("Pass.");
+		}
+		else {
+			System.out.println("Fail.");
+		}
+		//Test case #5, date with invalid year
+		Date date5 = new Date("00/11/-54");
+		System.out.println("Test case #5: Minimum year is 0.");
+		result = date5.isValid();
+		expectedResult = false;
+		if(result == expectedResult) {
+			System.out.println("Pass.");
+		}
+		else {
+			System.out.println("Fail.");
+		}
+		//Test case #6, date with Feb. 29 on non-leap year
+		Date date6 = new Date("02/29/2001");
+		System.out.println("Test case #6: February only has 28 days for non-leap year");
+		result = date6.isValid();
+		expectedResult = false;
+		if(result == expectedResult) {
+			System.out.println("Pass.");
+		}
+		else {
+			System.out.println("Fail.");
+		}
+		//Test case #7 date with Feb. 29 on a leap year
+		Date date7 = new Date("02/29/2004");
+		System.out.println("Test case #7: February has 29 days on a leap year");
+		result = date7.isValid();
+		expectedResult = true;
+		if(result == expectedResult) {
+			System.out.println("Pass.");
+		}
+		else {
+			System.out.println("Fail.");
+		}
+		//Test case #8 date with Feb. 29 on a non-leap year (multiple of 100)
+		Date date8 = new Date("02/29/2100");
+		System.out.println("Test case #8: February has only 28 days on a centennial year");
+		result = date8.isValid();
+		expectedResult = false;
+		if(result == expectedResult) {
+			System.out.println("Pass.");
+		}
+		else {
+			System.out.println("Fail.");
+		}
+		//Test case #9 date with Feb. 29 on a leap year (multiple of 400)
+		Date date9 = new Date("02/29/2000");
+		System.out.println("Test case #9: February has 29 days on a quartercentennial year");
+		result = date9.isValid();
+		expectedResult = true;
+		if(result == expectedResult) {
+			System.out.println("Pass.");
+		}
+		else {
+			System.out.println("Fail.");
+		}
+		//Test case #10, today's date
+		Date date10 = new Date();
+		System.out.println("Test case #10: Today's date is valid");
+		result = date10.isValid();
+		expectedResult = true;
+		if(result == expectedResult) {
+			System.out.println("Pass.");
+		}
+		else {
+			System.out.println("Fail.");
+		}
+		//Test case #11, known valid date
+		Date date11 = new Date("07/26/1933");
+		System.out.println("Test case #11: 07/26/1933 is a valid date");
+		result = date11.isValid();
+		expectedResult = true;
+		if(result == expectedResult) {
+			System.out.println("Pass.");
+		}
+		else {
+			System.out.println("Fail.");
+		}
+		//Test case #12, known valid date without leading zeros for day and month
+		Date date12 = new Date("1/2/1903");
+		System.out.println("Test case #12: 1/2/1903 is valid without leading zeros for month and day");
+		result = date12.isValid();
+		expectedResult = true;
+		if(result == expectedResult) {
+			System.out.println("Pass.");
+		}
+		else {
+			System.out.println("Fail.");
+		}
 	}
 }

@@ -87,16 +87,4 @@ public class Appointment {
 	public String toString() {
 		return patient.toString() + ", Appointment Detail: " + slot.toString() + ", " + location.toString();
 	}
-
-	/**
-	 * Tests the constructor and the methods in the Appointment class
-	 * @param args Not used. Here by default.
-	 */
-	public static void main (String[] args) {
-		Appointment appt1 = new Appointment("1/19/2000 Jane Doe 12/1/2022 9:45 union");
-		Appointment appt2 = new Appointment("11/31/1999 John Doe 3/31/2022 9:45 SOMERSET");
-		Appointment appt3 = new Appointment("1/19/2000 Jane Doe 12/1/2022 9:45 UNION");
-		System.out.println(appt1.equals(appt2));
-		System.out.println(appt1.toString());
-	}
 }

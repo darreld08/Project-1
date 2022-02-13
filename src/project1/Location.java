@@ -71,13 +71,4 @@ public enum Location {
 		}
 		return null;
 	}
-
-	/**
-	 * Tests the Location class.
-	 * @param args Not used. Here by default.
-	 */
-	public static void main(String[] args) {
-		Location location1 = Location.SOMERSET;
-		System.out.println(location1.toString());
-	}
 }
