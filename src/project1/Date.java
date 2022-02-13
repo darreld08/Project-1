@@ -313,7 +313,7 @@ public class Date implements Comparable <Date> {
 		}
 		//Test case #12, known valid date without leading zeros for day and month
 		Date date13 = new Date("0001/00021/001953");
-		System.out.println("Test case #13: Dates with excessive leading zeros are valid if they satisfy all other requirements");
+		System.out.println("Test case #13: Dates with excessive leading zeros can be valid");
 		result = date13.isValid();
 		expectedResult = true;
 		if(result == expectedResult) {
