@@ -132,7 +132,7 @@ public class Schedule {
 		int i = 0;
 		boolean removedPatient = false;
 		while(i < numAppts) {
-			if(appointments[i].getPatient().compareTo(appt.getPatient()) == Constant.EQUAL) { //patients are same
+			if (appointments[i].getPatient().compareTo(appt.getPatient()) == Constant.EQUAL) { //patients are same
 				remove(appointments[i]);
 				removedPatient = true;
 				continue;
