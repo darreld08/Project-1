@@ -98,9 +98,11 @@ public class Timeslot implements Comparable<Timeslot> {
     public static void main(String[] args) {
     	int expectedResult;
 		int result;
+		Timeslot timeslot1;
+		Timeslot timeslot2;
 		//Test case #1, timeslot 1 date is before timeslot 2
-		Timeslot timeslot1 = new Timeslot("2/27/2021", "1:45");
-		Timeslot timeslot2 = new Timeslot("3/2/2021", "9:15");
+		timeslot1 = new Timeslot("2/27/2021", "1:45");
+		timeslot2 = new Timeslot("3/2/2021", "9:15");
 		System.out.println("Test case #1: If timeslot 1 date is before timeslot 2, return -1");
 		result = timeslot1.compareTo(timeslot2);
 		expectedResult = -1;

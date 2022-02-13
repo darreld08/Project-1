@@ -187,21 +187,22 @@ public class Date implements Comparable <Date> {
 		else {
 			System.out.println("Fail.");
 		}
-		//Test case #2, date with invalid day of the month
-		Date date2 = new Date("11/00/2021");
-		System.out.println("Test case #2: Minimum day value is 1");
+		
+		//Test case #2, date with valid day of the month
+		Date date2 = new Date("8/31/2021");
+		System.out.println("Test case #2: Jan, Mar, May, Jul, Aug, Oct, and Dec have 31 days.");
 		result = date2.isValid();
-		expectedResult = false;
+		expectedResult = true;
 		if(result == expectedResult) {
 			System.out.println("Pass.");
 		}
 		else {
 			System.out.println("Fail.");
 		}
-		
-		//Test case #3, date with invalid month
-		Date date3 = new Date("13/11/2021");
-		System.out.println("Test case #3: Maximum month value is 12");
+				
+		//Test case #3, date with invalid day of the month
+		Date date3 = new Date("11/00/2021");
+		System.out.println("Test case #3: Minimum day value is 1");
 		result = date3.isValid();
 		expectedResult = false;
 		if(result == expectedResult) {
@@ -210,9 +211,10 @@ public class Date implements Comparable <Date> {
 		else {
 			System.out.println("Fail.");
 		}
+		
 		//Test case #4, date with invalid month
-		Date date4 = new Date("00/11/2021");
-		System.out.println("Test case #4: Minimum month value is 1");
+		Date date4 = new Date("13/11/2021");
+		System.out.println("Test case #4: Maximum month value is 12");
 		result = date4.isValid();
 		expectedResult = false;
 		if(result == expectedResult) {
@@ -221,9 +223,9 @@ public class Date implements Comparable <Date> {
 		else {
 			System.out.println("Fail.");
 		}
-		//Test case #5, date with invalid year
-		Date date5 = new Date("00/11/-54");
-		System.out.println("Test case #5: Minimum year is 0.");
+		//Test case #5, date with invalid month
+		Date date5 = new Date("00/11/2021");
+		System.out.println("Test case #5: Minimum month value is 1");
 		result = date5.isValid();
 		expectedResult = false;
 		if(result == expectedResult) {
@@ -232,9 +234,9 @@ public class Date implements Comparable <Date> {
 		else {
 			System.out.println("Fail.");
 		}
-		//Test case #6, date with Feb. 29 on non-leap year
-		Date date6 = new Date("02/29/2001");
-		System.out.println("Test case #6: February only has 28 days for non-leap year");
+		//Test case #6, date with invalid year
+		Date date6 = new Date("01/13/-54");
+		System.out.println("Test case #6: Minimum year is 0.");
 		result = date6.isValid();
 		expectedResult = false;
 		if(result == expectedResult) {
@@ -243,21 +245,10 @@ public class Date implements Comparable <Date> {
 		else {
 			System.out.println("Fail.");
 		}
-		//Test case #7 date with Feb. 29 on a leap year
-		Date date7 = new Date("02/29/2004");
-		System.out.println("Test case #7: February has 29 days on a leap year");
+		//Test case #7, date with Feb. 29 on non-leap year
+		Date date7 = new Date("02/29/2001");
+		System.out.println("Test case #7: February only has 28 days for non-leap year");
 		result = date7.isValid();
-		expectedResult = true;
-		if(result == expectedResult) {
-			System.out.println("Pass.");
-		}
-		else {
-			System.out.println("Fail.");
-		}
-		//Test case #8 date with Feb. 29 on a non-leap year (multiple of 100)
-		Date date8 = new Date("02/29/2100");
-		System.out.println("Test case #8: February has only 28 days on a centennial year");
-		result = date8.isValid();
 		expectedResult = false;
 		if(result == expectedResult) {
 			System.out.println("Pass.");
@@ -265,10 +256,10 @@ public class Date implements Comparable <Date> {
 		else {
 			System.out.println("Fail.");
 		}
-		//Test case #9 date with Feb. 29 on a leap year (multiple of 400)
-		Date date9 = new Date("02/29/2000");
-		System.out.println("Test case #9: February has 29 days on a quartercentennial year");
-		result = date9.isValid();
+		//Test case #8 date with Feb. 29 on a leap year
+		Date date8 = new Date("02/29/2004");
+		System.out.println("Test case #8: February has 29 days on a leap year");
+		result = date8.isValid();
 		expectedResult = true;
 		if(result == expectedResult) {
 			System.out.println("Pass.");
@@ -276,9 +267,20 @@ public class Date implements Comparable <Date> {
 		else {
 			System.out.println("Fail.");
 		}
-		//Test case #10, today's date
-		Date date10 = new Date();
-		System.out.println("Test case #10: Today's date is valid");
+		//Test case #9 date with Feb. 29 on a non-leap year (multiple of 100)
+		Date date9 = new Date("02/29/2100");
+		System.out.println("Test case #9: February has only 28 days on a centennial year");
+		result = date9.isValid();
+		expectedResult = false;
+		if(result == expectedResult) {
+			System.out.println("Pass.");
+		}
+		else {
+			System.out.println("Fail.");
+		}
+		//Test case #10 date with Feb. 29 on a leap year (multiple of 400)
+		Date date10 = new Date("02/29/2000");
+		System.out.println("Test case #10: February has 29 days on a quartercentennial year");
 		result = date10.isValid();
 		expectedResult = true;
 		if(result == expectedResult) {
@@ -287,9 +289,9 @@ public class Date implements Comparable <Date> {
 		else {
 			System.out.println("Fail.");
 		}
-		//Test case #11, known valid date
-		Date date11 = new Date("07/26/1933");
-		System.out.println("Test case #11: 07/26/1933 is a valid date");
+		//Test case #11, today's date
+		Date date11 = new Date();
+		System.out.println("Test case #11: Today's date is valid");
 		result = date11.isValid();
 		expectedResult = true;
 		if(result == expectedResult) {
@@ -302,6 +304,17 @@ public class Date implements Comparable <Date> {
 		Date date12 = new Date("1/2/1903");
 		System.out.println("Test case #12: 1/2/1903 is valid without leading zeros for month and day");
 		result = date12.isValid();
+		expectedResult = true;
+		if(result == expectedResult) {
+			System.out.println("Pass.");
+		}
+		else {
+			System.out.println("Fail.");
+		}
+		//Test case #12, known valid date without leading zeros for day and month
+		Date date13 = new Date("0001/00021/001953");
+		System.out.println("Test case #13: Dates with excessive leading zeros are valid if they satisfy all other requirements");
+		result = date13.isValid();
 		expectedResult = true;
 		if(result == expectedResult) {
 			System.out.println("Pass.");
