@@ -25,7 +25,7 @@ public class Schedule {
 	 * @return True if the appointment exists in the schedule.
 	 */
 	public boolean existsInSchedule(Appointment appt) {
-		if(find(appt)==Constant.NOT_FOUND) {
+		if (find(appt)==Constant.NOT_FOUND) {
 			return false;
 		}
 		return true;
@@ -38,8 +38,8 @@ public class Schedule {
 	 */
 	public boolean timeSlotTaken(Appointment appt) {
 		Timeslot slot = appt.getSlot();
-		for(int i = 0; i < numAppts; i++) {
-			if(slot.equals(appointments[i].getSlot()) && appt.getLocation().equals(appointments[i].getLocation())) {
+		for (int i = 0; i < numAppts; i++) {
+			if (slot.equals(appointments[i].getSlot()) && appt.getLocation().equals(appointments[i].getLocation())) {
 				//checks if timeslots are same and location are same
 				return true;
 			}
@@ -55,9 +55,9 @@ public class Schedule {
 	 * false otherwise.
 	 */
 	public boolean doubleAppt(Appointment appt) {
-		for(int i = 0; i < numAppts; i++) {
-			if(appointments[i].getPatient().compareTo(appt.getPatient()) == Constant.EQUAL) { //patients are equal
-				if(appointments[i].getSlot().getDate().compareTo(appt.getSlot().getDate()) == Constant.EQUAL) {
+		for (int i = 0; i < numAppts; i++) {
+			if (appointments[i].getPatient().compareTo(appt.getPatient()) == Constant.EQUAL) { //patients are equal
+				if (appointments[i].getSlot().getDate().compareTo(appt.getSlot().getDate()) == Constant.EQUAL) {
 					//same date
 					return true;
 				}
@@ -73,8 +73,8 @@ public class Schedule {
 	 * @return The integer Appointment array index if the appointment is found and -1 if the appointment is not found.
 	 */
 	private int find(Appointment appt) { //returns the index, or NOT_FOUND = -1
-		for(int i = 0; i < numAppts; i++) {
-			if(appointments[i].equals(appt)) {
+		for (int i = 0; i < numAppts; i++) {
+			if (appointments[i].equals(appt)) {
 				return i;
 			}
 		}
@@ -131,7 +131,7 @@ public class Schedule {
 	public boolean removePatient(Appointment appt) {
 		int i = 0;
 		boolean removedPatient = false;
-		while(i < numAppts) {
+		while (i < numAppts) {
 			if (appointments[i].getPatient().compareTo(appt.getPatient()) == Constant.EQUAL) { //patients are same
 				remove(appointments[i]);
 				removedPatient = true;

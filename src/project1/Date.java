@@ -172,7 +172,7 @@ public class Date implements Comparable <Date> {
 	 * Tests the constructor and the methods in the Date class
 	 * @param args Not used. Here by default.
 	 */
-	//Testbed main (in progress)
+	//Testbed main
 	public static void main(String[] args) {
 		boolean expectedResult;
 		boolean result;
@@ -181,7 +181,7 @@ public class Date implements Comparable <Date> {
 		System.out.println("Test case #1: Apr, Jun, Sept, and Nov only have 30 days.");
 		result = date1.isValid();
 		expectedResult = false;
-		if(result == expectedResult) {
+		if (result == expectedResult) {
 			System.out.println("Pass.");
 		}
 		else {
@@ -193,7 +193,7 @@ public class Date implements Comparable <Date> {
 		System.out.println("Test case #2: Jan, Mar, May, Jul, Aug, Oct, and Dec have 31 days.");
 		result = date2.isValid();
 		expectedResult = true;
-		if(result == expectedResult) {
+		if (result == expectedResult) {
 			System.out.println("Pass.");
 		}
 		else {
@@ -205,7 +205,7 @@ public class Date implements Comparable <Date> {
 		System.out.println("Test case #3: Minimum day value is 1");
 		result = date3.isValid();
 		expectedResult = false;
-		if(result == expectedResult) {
+		if (result == expectedResult) {
 			System.out.println("Pass.");
 		}
 		else {
@@ -217,7 +217,7 @@ public class Date implements Comparable <Date> {
 		System.out.println("Test case #4: Maximum month value is 12");
 		result = date4.isValid();
 		expectedResult = false;
-		if(result == expectedResult) {
+		if (result == expectedResult) {
 			System.out.println("Pass.");
 		}
 		else {
@@ -228,7 +228,7 @@ public class Date implements Comparable <Date> {
 		System.out.println("Test case #5: Minimum month value is 1");
 		result = date5.isValid();
 		expectedResult = false;
-		if(result == expectedResult) {
+		if (result == expectedResult) {
 			System.out.println("Pass.");
 		}
 		else {
@@ -239,7 +239,7 @@ public class Date implements Comparable <Date> {
 		System.out.println("Test case #6: Minimum year is 0.");
 		result = date6.isValid();
 		expectedResult = false;
-		if(result == expectedResult) {
+		if (result == expectedResult) {
 			System.out.println("Pass.");
 		}
 		else {
@@ -250,7 +250,7 @@ public class Date implements Comparable <Date> {
 		System.out.println("Test case #7: February only has 28 days for non-leap year");
 		result = date7.isValid();
 		expectedResult = false;
-		if(result == expectedResult) {
+		if (result == expectedResult) {
 			System.out.println("Pass.");
 		}
 		else {
@@ -261,7 +261,7 @@ public class Date implements Comparable <Date> {
 		System.out.println("Test case #8: February has 29 days on a leap year");
 		result = date8.isValid();
 		expectedResult = true;
-		if(result == expectedResult) {
+		if (result == expectedResult) {
 			System.out.println("Pass.");
 		}
 		else {
@@ -272,7 +272,7 @@ public class Date implements Comparable <Date> {
 		System.out.println("Test case #9: February has only 28 days on a centennial year");
 		result = date9.isValid();
 		expectedResult = false;
-		if(result == expectedResult) {
+		if (result == expectedResult) {
 			System.out.println("Pass.");
 		}
 		else {
@@ -283,7 +283,7 @@ public class Date implements Comparable <Date> {
 		System.out.println("Test case #10: February has 29 days on a quartercentennial year");
 		result = date10.isValid();
 		expectedResult = true;
-		if(result == expectedResult) {
+		if (result == expectedResult) {
 			System.out.println("Pass.");
 		}
 		else {
@@ -294,7 +294,7 @@ public class Date implements Comparable <Date> {
 		System.out.println("Test case #11: Today's date is valid");
 		result = date11.isValid();
 		expectedResult = true;
-		if(result == expectedResult) {
+		if (result == expectedResult) {
 			System.out.println("Pass.");
 		}
 		else {
@@ -305,7 +305,7 @@ public class Date implements Comparable <Date> {
 		System.out.println("Test case #12: 1/2/1903 is valid without leading zeros for month and day");
 		result = date12.isValid();
 		expectedResult = true;
-		if(result == expectedResult) {
+		if (result == expectedResult) {
 			System.out.println("Pass.");
 		}
 		else {
@@ -316,7 +316,7 @@ public class Date implements Comparable <Date> {
 		System.out.println("Test case #13: Dates with excessive leading zeros can be valid");
 		result = date13.isValid();
 		expectedResult = true;
-		if(result == expectedResult) {
+		if (result == expectedResult) {
 			System.out.println("Pass.");
 		}
 		else {
