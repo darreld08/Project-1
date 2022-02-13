@@ -1,5 +1,11 @@
 package project1;
 
+/**
+ * This class contains all the constant values used in different classes in the package.
+ *
+ * @author Darrel Dsouza
+ * @author Anton Derkach
+ */
 public class Constant {
 	public static final int QUADRENNIAL = 4;
 	public static final int CENTENNIAL = 100;

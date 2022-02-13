@@ -1,10 +1,23 @@
 package project1;
 
+/**
+ * This class contains a constructor and methods that enable to create an Appointment object
+ * with the attributes "Patient", "Timeslot", and "location, and get the attributes and compare
+ * Appointment objects
+ *
+ * @author Darrel Dsouza
+ * @author Anton Derkach
+ */
+
 public class Appointment {
 	private Patient patient;
 	private Timeslot slot;
 	private Location location;
-	
+
+	/**
+	 * Appointment Constructor
+	 * @param input The String containing the patient's DOB, first name, last name, the date, the time, and the county
+	 */
 	public Appointment(String input) {
 		try {
 			String[] splitInput = input.split(" ");
@@ -22,18 +35,35 @@ public class Appointment {
 		}
 	}
 
+	/**
+	 * Gets the location of the appointment
+	 * @return The location of the instance object
+	 */
 	public Location getLocation() {
 		return location;
 	}
 
+	/**
+	 * Gets the timeslot of the appointment
+	 * @return The timeslot of the instance object
+	 */
 	public Timeslot getSlot() {
 		return slot;
 	}
 
+	/**
+	 * Gets the patient's name and DOB
+	 * @return The patient of the instance object
+	 */
 	public Patient getPatient() {
 		return patient;
 	}
 
+	/**
+	 * Checks if the instance object and another object have the same patient, slot, and location
+	 * @param obj The object to compare the instance object to
+	 * @return true if the objects are equal (same instance attributes)
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if(obj instanceof Appointment) {
@@ -48,18 +78,25 @@ public class Appointment {
 		}
 		return false;
 	}
-	
+
+	/**
+	 * Converts the object into a String consisting of the patient's information, slot, and location
+	 * @return The String representation of the instance object
+	 */
 	@Override
 	public String toString() {
 		return patient.toString() + ", Appointment Detail: " + slot.toString() + ", " + location.toString();
 	}
-	
+
+	/**
+	 * Tests the constructor and the methods in the Appointment class
+	 * @param args Not used. Here by default.
+	 */
 	public static void main (String[] args) {
 		Appointment appt1 = new Appointment("1/19/2000 Jane Doe 12/1/2022 9:45 union");
 		Appointment appt2 = new Appointment("11/31/1999 John Doe 3/31/2022 9:45 SOMERSET");
 		Appointment appt3 = new Appointment("1/19/2000 Jane Doe 12/1/2022 9:45 UNION");
 		System.out.println(appt1.equals(appt2));
 		System.out.println(appt1.toString());
-		
 	}
 }
