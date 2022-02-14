@@ -35,7 +35,7 @@ public class Timeslot implements Comparable<Timeslot> {
      * @return True if the two timeslots have the same date and time and false otherwise.
      */
     public boolean equals(Timeslot slot) {
-    	if(date.compareTo(slot.date) == Constant.EQUAL && time.compareTo(slot.time) == Constant.EQUAL) {
+    	if (date.compareTo(slot.date) == Constant.EQUAL && time.compareTo(slot.time) == Constant.EQUAL) {
     		return true;
     	}
     	return false;
@@ -92,7 +92,7 @@ public class Timeslot implements Comparable<Timeslot> {
     }
 
     /**
-     * Tests the Timeslot class. (in progress)
+     * Tests the Timeslot class.
      * @param args Not used. Here by default.
      */
     public static void main(String[] args) {
@@ -105,8 +105,8 @@ public class Timeslot implements Comparable<Timeslot> {
 		timeslot2 = new Timeslot("3/2/2021", "9:15");
 		System.out.println("Test case #1: If timeslot 1 date is before timeslot 2, return -1");
 		result = timeslot1.compareTo(timeslot2);
-		expectedResult = -1;
-		if(result == expectedResult) {
+		expectedResult = Constant.LESS;
+		if (result == expectedResult) {
 			System.out.println("Pass.");
 		}
 		else {
@@ -118,8 +118,8 @@ public class Timeslot implements Comparable<Timeslot> {
 		timeslot2 = new Timeslot("2/27/2021", "9:15");
 		System.out.println("Test case #2: If timeslot 1 date is after timeslot 2, return 1");
 		result = timeslot1.compareTo(timeslot2);
-		expectedResult = 1;
-		if(result == expectedResult) {
+		expectedResult = Constant.GREATER;
+		if (result == expectedResult) {
 			System.out.println("Pass.");
 		}
 		else {
@@ -131,8 +131,8 @@ public class Timeslot implements Comparable<Timeslot> {
 		timeslot2 = new Timeslot("3/2/2021", "2:15");
 		System.out.println("Test case #3: If timeslots have same date, and timeslot 1 time is before timeslot 2, return -1");
 		result = timeslot1.compareTo(timeslot2);
-		expectedResult = -1;
-		if(result == expectedResult) {
+		expectedResult = Constant.LESS;
+		if (result == expectedResult) {
 			System.out.println("Pass.");
 		}
 		else {
@@ -144,8 +144,8 @@ public class Timeslot implements Comparable<Timeslot> {
 		timeslot2 = new Timeslot("3/2/2021", "1:45");
 		System.out.println("Test case #4: If timeslots have same date, and timeslot 1 time is after timeslot 2, return 1");
 		result = timeslot1.compareTo(timeslot2);
-		expectedResult = 1;
-		if(result == expectedResult) {
+		expectedResult = Constant.GREATER;
+		if (result == expectedResult) {
 			System.out.println("Pass.");
 		}
 		else {
@@ -157,8 +157,8 @@ public class Timeslot implements Comparable<Timeslot> {
 		timeslot2 = new Timeslot("3/2/2021", "2:15");
 		System.out.println("Test case #5: If timeslot 1 and 2 have the same date and time, return 0");
 		result = timeslot1.compareTo(timeslot2);
-		expectedResult = 0;
-		if(result == expectedResult) {
+		expectedResult = Constant.EQUAL;
+		if (result == expectedResult) {
 			System.out.println("Pass.");
 		}
 		else {
